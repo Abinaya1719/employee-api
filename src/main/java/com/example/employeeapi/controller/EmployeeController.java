@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
@@ -36,10 +35,13 @@ public class EmployeeController {
 	 * updatedEmployee = employeeRepository.save(employee); return
 	 * ResponseEntity.ok(updatedEmployee); }
 	 * 
-	 * @DeleteMapping("/{id}") public ResponseEntity<Void>
-	 * deleteEmployee(@PathVariable Long id) { if
-	 * (!employeeRepository.existsById(id)) { return
-	 * ResponseEntity.notFound().build(); } employeeRepository.deleteById(id);
-	 * return ResponseEntity.noContent().build(); }
 	 */
+    @DeleteMapping("/{id}") 
+    public ResponseEntity<Void>deleteEmployee(@PathVariable Long id) { 
+    	if(!employeeRepository.existsById(id)) { 
+    		return ResponseEntity.notFound().build(); 
+    		} 
+    	employeeRepository.deleteById(id);
+	 return ResponseEntity.noContent().build(); 
+	 }
 }
