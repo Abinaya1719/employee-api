@@ -27,15 +27,16 @@ public class EmployeeController {
         return employeeRepository.save(employee);
     }
 
-	/*
-	 * @PutMapping("/{id}") public ResponseEntity<Employee>
-	 * updateEmployee(@PathVariable Long id, @RequestBody Employee employee) { if
-	 * (!employeeRepository.existsById(id)) { return
-	 * ResponseEntity.notFound().build(); } employee.setId(id); Employee
-	 * updatedEmployee = employeeRepository.save(employee); return
-	 * ResponseEntity.ok(updatedEmployee); }
-	 * 
-	 */
+	@PutMapping("/{id}") 
+	public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) { 
+		if(!employeeRepository.existsById(id)) { 
+			return ResponseEntity.notFound().build(); 
+			} 
+		employee.setId(id); 
+		Employee updatedEmployee = employeeRepository.save(employee); 
+		return ResponseEntity.ok(updatedEmployee); 
+		}
+	
     @DeleteMapping("/{id}") 
     public ResponseEntity<Void>deleteEmployee(@PathVariable Long id) { 
     	if(!employeeRepository.existsById(id)) { 
