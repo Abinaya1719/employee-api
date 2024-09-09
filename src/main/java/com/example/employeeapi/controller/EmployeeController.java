@@ -37,12 +37,21 @@ public class EmployeeController {
 		return ResponseEntity.ok(updatedEmployee); 
 		}
 	
-    @DeleteMapping("/{id}") 
-    public ResponseEntity<Void>deleteEmployee(@PathVariable Long id) { 
-    	if(!employeeRepository.existsById(id)) { 
-    		return ResponseEntity.notFound().build(); 
-    		} 
-    	employeeRepository.deleteById(id);
-	 return ResponseEntity.noContent().build(); 
-	 }
+		/*
+		 * @DeleteMapping("/{id}") public
+		 * ResponseEntity<Void>deleteEmployee(@PathVariable Long id) {
+		 * if(!employeeRepository.existsById(id)) { return
+		 * ResponseEntity.notFound().build(); } employeeRepository.deleteById(id);
+		 * return ResponseEntity.noContent().build(); }
+		 */
+    @DeleteMapping(value = "/{id}")
+	public String deleteEmployee(@PathVariable("id") Long employeeId) {
+		if (employeeRepository.existsById(employeeId)) {
+			employeeRepository.deleteById(employeeId);
+return "Given id successfuly deleted";
+		} else {
+			return "Given is id not found";
+		}
+ 
+	}
 }
