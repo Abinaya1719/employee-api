@@ -45,12 +45,12 @@ public class EmployeeController {
 		 * return ResponseEntity.noContent().build(); }
 		 */
     @DeleteMapping(value = "/{id}")
-	public String deleteEmployee(@PathVariable("id") Long employeeId) {
-		if (employeeRepository.existsById(employeeId)) {
-			employeeRepository.deleteById(employeeId);
-return "Given id successfuly deleted";
+	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
+		if (employeeRepository.existsById(id)) {
+			employeeRepository.deleteById(id);
+			return ResponseEntity.ok().build();
 		} else {
-			return "Given is id not found";
+			return ResponseEntity.noContent().build();
 		}
  
 	}
